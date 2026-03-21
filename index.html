@@ -1,138 +1,203 @@
 <!doctype html>
-<html>
-  <head>
-    <!-- Page setup -->
+<html lang="en">
+<head>
     <meta charset="utf-8">
-    <title>Emily Simon</title>
-    <meta name="description" content="Personal website for the astrophysics research of Emily Simon">
-    <meta name="author" content="Hi, I'm a PhD student at the University of Chicago">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link rel="icon" type="image/png" href="favicon.png">
-  
-    <!-- Stylesheets -->
-    <!-- Reset default styles and add support for google fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css" />
-    <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
-   
-    <!-- Custom styles -->
-    <link href="style.css" rel="stylesheet" type="text/css" />
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>    
-
-    <!-- Want to add Bootstrap? -->
-    <!-- Visit: https://getbootstrap.com/docs/4.3/getting-started/introduction/ -->
+    <title>Emily Simon | Astrophysics Research</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
-  </head>
-  
-  <body>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
-    <header id="header">
-      <img src="Simon__Emily.jpeg" width = "120" height="160">
-      <h1>Emily Simon</h1>
-      
-      <!-- Menu link fragment #id should match a div id. Example: <a href="#home"> links to <div id="home"></div>  -->
-      <ul class="main-menu">
-        <li><a href="#home">home</a></li>
-        <li><a href="#research">research</a></li>
-        <li><a href="#outreach">outreach</a></li>
-        <li><a href="#contact">contact</a></li>
-      </ul>                 
-    </header>
-   
-    <div id="container">
-      <div class="inner">
-        <div id="content"> 
-          
-          <div id="home" class="content-region hide">
-            <h2>Home</h2>
-            <p>
-              Hello! My name is Emily Simon and I'm a graduate student at the University of Chicago studying Astrophysics!
-            </p>
-          </div>
-          
-          <div id="research" class="content-region hide">
-            <h2>Research</h2>
-            <p>
-              I am broadly interested in theoretical astroparticle physics with a special interest in high energy phenomenon and beyond the standard model physics! 
-              <br>My current research involves the search for PeV particles from supernova remnants with Professor Damiano Caprioli. 
-             <div class="row">
-                <div class="column">
-                  <figure>
-                    <img src="cr-flux.png" height="200" width="150">
-                    <figcaption>The flux of cosmic rays detected on Earth. Img credit: IceCube </figcaption>
-                 </figure>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f8f9fa;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .hero-text h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        /* Project Cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            width: 250px;
+            min-height: 200px;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e1ecf4;
+            color: #39739d;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .links a {
+            margin-right: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .links a:hover { color: var(--accent); }
+
+        @media (max-width: 600px) {
+            header, .project-card { flex-direction: column; }
+            .project-img { width: 100%; height: 200px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <header>
+        <img src="Simon__Emily.jpeg" alt="Emily Simon" class="profile-pic">
+        <div class="hero-text">
+            <h1>Emily Simon</h1>
+            <p><strong>PhD Student in Astrophysics at the University of Chicago</strong></p>
+            <span style="color: #666; font-size: 0.95rem;">NSF Graduate Research Fellow</span>
+            <p>I study theoretical astroparticle physics, focusing on high-energy phenomena and the acceleration of cosmic rays. </p>
+            <div class="links">
+                <div class="email-container">
+                    <a href="mailto:ersimon@uchicago.edu" id="email-text">ersimon@uchicago.edu</a>
+                    
+                    <button onclick="copyEmail()" class="copy-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    </button>
+                    
+                    <span id="copy-status">Copied!</span>
                 </div>
-                <div class="column">
-                  <figure>
-                    <img src="hillas.jpg" height="200" width="200">
-                    <figcaption>The maximum energy particles a source can produce with a given magnetic field and size. Img credit: IceCube </figcaption>
-                  </figure>
-                </div>
+                <a href="https://orcid.org/0000-0002-9386-630X">ORCID</a>
+                <a href="CV_Emily_Simon_23.pdf">CV</a>
+                <a href="https://www.linkedin.com/in/emily-simon-5912071aa">LinkedIn</a>
             </div>
-              
-              Supernova remnants (SNRs) are prominent candidates for supplying the energy density and spectrum of galactic cosmic rays observed out to PeV energies. 
-              However, SNR observations and analytical estimates of diffusive shock acceleration (DSA) struggle to produce PeV protons, leaving an open question: 
-              is there something about the acceleration process that we still don’t understand? Using a novel setup for hybrid (kinetic ions/fluid electrons) 
-              simulations, we're looking at the nonlinear relationship between cosmic ray current, amplified magnetic fields, and the diffusion coefficient 
-              to estimate the highest energy particles it is possible to produce in DSA at SNR shocks.
-              
-              <br>
-              <br>Past projects include:
-            </p>
-              <div class="row">
-                <div class="column" style="background-color:#FFB695;">
-                  <p>
-                    <center>Magentic Reconnection</center>
-                    <br>How are particles accelerated when magnetic field lines break and reconnect?<br>
-                    <a href="https://ersimon.github.io/AstroFest _2019.pdf" target="_blank">Poster from Columbia University's AstroFest 2019</a>
-                  </p>
-                </div>
-                <div class="column" style="background-color:#96D1CD;">
-                  <p>
-                    <center>ATLAS Beyond the Standard Model Search</center>
-                    <br>Can we use a delayed and non-pointing photon signature to look for Beyond the Standard Model physics in ATLAS?<br>
-                    <a href="https://ersimon.github.io/CERN_final_presentation.pdf" target="_blank">CERN REU Final Talk</a>
-                  </p>
-                </div>
-                <div class="column" style="background-color:#74C3E1;">
-                  <p>
-                    <center>Dark Matter Distrubtions With Strong Gravitational Lensing</center>
-                    <br>Can we take advantage of perturbations in strong gravitational lenses to characterize the dark matter distribution in subhaloes?<br>
-                    <a href="https://academic.oup.com/mnras/article/507/1/1202/6333364" target="_blank">MNRAS paper</a>
-                  </p>
-                </div>
-            </div>
-          </div>
-          
-           <div id="outreach" class="content-region hide">
-            <h2>Outreach</h2>
-            <p>
-               I am a member of the Astronomy & Astrophysics Community Engagement Working Group. Learn more about what we're up to  <a href="https://astrophysics.uchicago.edu/diversityinclusion/community-engagement-working-group/#:~:text=The%20Community%20Engagement%20Working%20Group,for%20Cosmological%20Physics%20(KICP).">here!</a>
-            </p>
-          </div>
-          
-          <div id="contact" class="content-region hide">
-            <h2>Contact</h2>
-            <p>
-              Feel free to get in contact!<br>
-              <a href="https://astrophysics.uchicago.edu/people/profile/emily-simon/">Send me an email</a><br>
-              <a href="https://orcid.org/0000-0002-9386-630X">Check out my Orcid</a><br>
-              <a href="https://ersimon.github.io/CV_Emily_Simon_23.pdf" target="_blank">View my CV</a><br>
-              <a href="https://www.linkedin.com/in/emily-simon-5912071aa">View my LinkedIn</a>
-            </p>
-          </div>
-          
         </div>
-      </div>
-    </div>
+    </header>
 
-    <footer>  
-      Thanks for stopping by!
+    <hr style="border: 0; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <section id="research">
+        <h2>Research Projects</h2>
+        
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <img src="cr-flux.png" alt="Cosmic Ray Flux" class="project-img">
+                <div class="project-content">
+                    <span class="tag">Current Research</span>
+                    <h3>The Maximum Energy Cosmic Rays in Supernova Remnants</h3>
+                    <p>Using hybrid kinetic simulations to investigate the plasma instabilities that lead to particle acceleration, possibly up to the "knee" of the cosmic ray energy spectrum.</p>
+                    <div class="links">
+                        <a href="#">Simulations</a>
+                        <a href="#">Pre-print</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="hillas.jpg" alt="Lensing research" class="project-img">
+                <div class="project-content">
+                    <span class="tag">Publication</span>
+                    <h3>A Catalog of Hadronic Supernova Remnants for Neutrino Followup</h3>
+                    <p>While neutrinos from individual Galactic SNRs are almost always too faint to be detected with current instruments, a stacked analysis may offer a possible route towards detection and would give us insight into the SNRs as hadronic accelerators.</p>
+                    <div class="links">
+                        <a href="https://arxiv.org/abs/2512.07940" target="_blank">Read Paper (arXiv)</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img" style="background:#2c3e50; color:white; display:flex; align-items:center; justify-content:center; text-align:center; padding:10px;">
+                    [Image/GIF of Photon Signature]
+                </div>
+                <div class="project-content">
+                    <span class="tag">BSM Physics</span>
+                    <h3>Dark Matter & BSM Projects</h3>
+                    <p>Investigating delayed and non-pointing photon signatures at the ATLAS detector to search for BSM physics.</p>
+                    <div class="links">
+                        <a href="https://arxiv.org/abs/2502.12238">Neutrino Signature from Ultra-Heavy Dark Matter Decays</a>
+                        <a href="CERN_final_presentation.pdf">Final Talk</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer style="margin-top: 80px; font-size: 0.8rem; color: #888; text-align: center;">
+        &copy; 2026 Emily Simon — Built with GitHub Pages
     </footer>
-    
-    <!-- Load additional JS scripts here -->
-    <script type="text/javascript" src="script.js"></script>
-    
-  </body>
+</div>
+
+</body>
 </html>
