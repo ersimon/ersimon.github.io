@@ -4,189 +4,482 @@
     <meta charset="utf-8">
     <title>Emily Simon | Astrophysics Research</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="style.css">
 
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --bg: #f8f9fa;
-            --text: #333;
+            --primary:    #1e1b4b;
+            --accent:     #e8634a;   /* burnt coral */
+            --accent-2:   #c46d8a;   /* dusty rose */
+            --accent-3:   #7c6bbf;   /* muted violet */
+            --gold:       #d4a843;
+            --bg:         #fdf8f3;   /* warm cream */
+            --surface:    #ffffff;
+            --text:       #2d2b3d;
+            --muted:      #706c8a;
+            --border:     rgba(30,27,75,0.1);
         }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--text);
             background-color: var(--bg);
             margin: 0;
+            font-size: 1rem;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 52px 24px;
         }
 
-        /* Hero Section */
+        /* ── Header ── */
         header {
             display: flex;
             align-items: center;
-            gap: 30px;
-            margin-bottom: 60px;
+            gap: 36px;
+            margin-bottom: 64px;
         }
 
-        .profile-pic {
-            width: 150px;
-            height: 150px;
+        /* Gradient ring around profile pic */
+        .profile-ring {
+            flex-shrink: 0;
+            width: 158px;
+            height: 158px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+            box-shadow: 0 8px 28px rgba(232,99,74,0.22);
+        }
+        .profile-ring img {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: block;
+            border: 3px solid var(--surface);
         }
 
         .hero-text h1 {
-            margin: 0;
-            font-size: 2.5rem;
+            margin: 0 0 4px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.7rem;
+            font-weight: 600;
             color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.15;
         }
 
-        /* Project Cards */
-        .project-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            margin-top: 30px;
+        .hero-text .role {
+            font-weight: 600;
+            font-size: 0.93rem;
+            color: var(--text);
+            margin: 0 0 4px;
         }
 
-        .project-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-img {
-            width: 250px;
-            min-height: 200px;
-            object-fit: cover;
-            background: #eee;
-        }
-
-        .project-content {
-            padding: 20px;
-        }
-
-        .project-content h3 {
-            margin-top: 0;
-            color: var(--accent);
-        }
-
-        .tag {
+        .hero-text .fellowship {
             display: inline-block;
-            background: #e1ecf4;
-            color: #39739d;
-            padding: 2px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .hero-text p {
+            color: var(--muted);
+            font-size: 0.93rem;
+            margin: 0 0 18px;
+            max-width: 460px;
+        }
+
+        /* ── Link pills ── */
+        .links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .links a {
-            margin-right: 15px;
-            font-weight: bold;
+            font-size: 0.83rem;
+            font-weight: 600;
             text-decoration: none;
             color: var(--primary);
-            font-size: 0.9rem;
+            border: 1.5px solid var(--border);
+            padding: 4px 13px;
+            border-radius: 20px;
+            background: var(--surface);
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+        .links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(232,99,74,0.05);
         }
 
-        .links a:hover { color: var(--accent); }
+        /* Email pill */
+        .email-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-size: 0.83rem;
+            transition: border-color 0.2s;
+        }
+        .email-container:hover { border-color: var(--accent); }
+        .email-container a {
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--primary);
+            border: none !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border-radius: 0 !important;
+        }
 
-        @media (max-width: 600px) {
-            header, .project-card { flex-direction: column; }
-            .project-img { width: 100%; height: 200px; }
+        .copy-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--muted);
+            padding: 0;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .copy-btn:hover { color: var(--accent); }
+
+        #copy-status {
+            display: none;
+            font-size: 0.72rem;
+            color: #2ca05a;
+            font-weight: 700;
+        }
+
+        /* ── Sunset gradient divider ── */
+        .divider {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), var(--accent-2), var(--accent-3), transparent);
+            margin: 0 0 52px;
+            opacity: 0.45;
+            border-radius: 2px;
+        }
+
+        /* ── Section headings ── */
+        section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0 0 24px;
+        }
+
+        /* ── Project cards ── */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 26px;
+            margin-top: 4px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 14px rgba(30,27,75,0.05);
+            transition: transform 0.22s, box-shadow 0.22s;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 36px rgba(30,27,75,0.10);
+        }
+
+        /* Image / GIF pane */
+        .project-img {
+            width: 240px;
+            min-height: 200px;
+            object-fit: cover;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        /* Placeholder for cards without an image yet */
+        .project-img-placeholder {
+            width: 240px;
+            min-height: 200px;
+            flex-shrink: 0;
+            background: linear-gradient(160deg, var(--primary) 0%, #312b6e 55%, #5c3d72 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.35);
+            font-size: 0.78rem;
+            font-style: italic;
+        }
+
+        .project-content {
+            padding: 22px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-content h3 {
+            margin: 6px 0 10px;
+            color: var(--primary);
+            font-size: 1.03rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .project-content p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 0 0 14px;
+            line-height: 1.65;
+        }
+
+        .project-content .links a {
+            font-size: 0.8rem;
+            padding: 3px 11px;
+        }
+
+        /* Tags — each gets a sunset hue */
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        .tag-current { background: rgba(232,99,74,0.12);  color: var(--accent);   }
+        .tag-pub      { background: rgba(124,107,191,0.12); color: var(--accent-3); }
+        .tag-bsm      { background: rgba(196,109,138,0.12); color: var(--accent-2); }
+
+        /* ── Subsection headings ── */
+        .subsection-heading {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 44px 0 18px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+        }
+        .subsection-heading::before,
+        .subsection-heading::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent));
+            opacity: 0.35;
+        }
+        .subsection-heading::after {
+            background: linear-gradient(to left, transparent, var(--accent));
+        }
+
+        /* ── Sub-project list inside a card ── */
+        .project-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 14px;
+        }
+        .project-list li {
+            font-size: 0.86rem;
+            color: var(--muted);
+            line-height: 1.65;
+            padding: 6px 0 6px 14px;
+            border-left: 2px solid var(--border);
+            margin-bottom: 8px;
+            position: relative;
+        }
+        .project-list li:last-child { margin-bottom: 0; }
+        .project-list a {
+            color: var(--accent-3);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .project-list a:hover { text-decoration: underline; }
+        .in-prep {
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--muted);
+            opacity: 0.8;
+        }
+
+        /* ── Footer ── */
+        footer {
+            margin-top: 80px;
+            font-size: 0.78rem;
+            color: var(--muted);
+            text-align: center;
+            padding-bottom: 16px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            header { flex-direction: column; text-align: center; gap: 22px; }
+            .hero-text p { max-width: none; }
+            .links { justify-content: center; }
+            .project-card { flex-direction: column; }
+            .project-img,
+            .project-img-placeholder { width: 100%; min-height: 180px; }
         }
     </style>
 </head>
 
 <body>
-
 <div class="container">
+
     <header>
-        <img src="Simon__Emily.jpeg" alt="Emily Simon" class="profile-pic">
+        <div class="profile-ring">
+            <img src="Simon__Emily.jpeg" alt="Emily Simon">
+        </div>
         <div class="hero-text">
             <h1>Emily Simon</h1>
-            <p><strong>PhD Student in Astrophysics at the University of Chicago</strong></p>
-            <span style="color: #666; font-size: 0.95rem;">NSF Graduate Research Fellow</span>
-            <p>I study theoretical astroparticle physics, focusing on high-energy phenomena and the acceleration of cosmic rays. </p>
+            <p class="role">PhD Student in Astrophysics · University of Chicago</p>
+            <span class="fellowship">NSF Graduate Research Fellow</span>
+            <p>I study theoretical astroparticle physics, focusing on high-energy phenomena and the acceleration of cosmic rays.</p>
             <div class="links">
                 <div class="email-container">
                     <a href="mailto:ersimon@uchicago.edu" id="email-text">ersimon@uchicago.edu</a>
-                    
-                    <button onclick="copyEmail()" class="copy-btn">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <button onclick="copyEmail()" class="copy-btn" title="Copy email">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
                     </button>
-                    
                     <span id="copy-status">Copied!</span>
                 </div>
                 <a href="https://orcid.org/0000-0002-9386-630X">ORCID</a>
-                <a href="CV_Emily_Simon_23.pdf">CV</a>
+                <a href="EmilySimon_CV.pdf">CV</a>
                 <a href="https://www.linkedin.com/in/emily-simon-5912071aa">LinkedIn</a>
             </div>
         </div>
     </header>
 
-    <hr style="border: 0; border-top: 1px solid #ddd; margin: 40px 0;">
+    <hr class="divider">
 
     <section id="research">
-        <h2>Research Projects</h2>
-        
+        <h2>Research</h2>
+
+        <!-- ── Kinetic Simulations ── -->
+        <h3 class="subsection-heading">Kinetic Simulations</h3>
         <div class="project-grid">
-            
+
+            <!-- Card 1: Shock acceleration & Emax -->
             <div class="project-card">
-                <img src="Bslice.png" alt="B slice" class="project-img">
+                <img src="Bslice.png" alt="Magnetic field slice from hybrid simulation" class="project-img">
                 <div class="project-content">
-                    <span class="tag">Current Research</span>
-                    <h3>The Maximum Energy Cosmic Rays in Supernova Remnants</h3>
-                    <p>Using hybrid kinetic simulations to investigate the plasma instabilities that lead to particle acceleration, possibly up to the "knee" of the cosmic ray energy spectrum.</p>
-                    <div class="links">
-                        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ae2611">Methods for "faux shock" hybrid simulations (ApJ)</a>
-                        <a href="https://arxiv.org/abs/2402.01048">Ongoing results for Emax at SNRs (ICRC Proceedings 2024)</a>
-                    </div>
+                    <span class="tag tag-current">Particle Acceleration</span>
+                    <h3>Maximum Energy Cosmic Rays at Supernova Remnant Shocks</h3>
+                    <p>I use hybrid kinetic simulations (dHybridR) to study how plasma instabilities at collisionless shocks
+                    accelerate particles, with the goal of understanding whether SNRs can reach the "knee"
+                    of the cosmic ray energy spectrum. Active research threads include:</p>
+                    <ul class="project-list">
+                        <li>Developed and validated a "faux-shock" boundary condition that substantially speeds
+                        up shock simulations &mdash;
+                        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ae2611">ApJ</a></li>
+                        <li>Studying particle acceleration driven by cosmic ray streaming instabilities;
+                        presented at ICRC 2024 &mdash;
+                        <a href="https://arxiv.org/abs/2402.01048">proceedings</a>,
+                        <span class="in-prep">manuscript in preparation</span></li>
+                        <li>Extending this to the high-Mach-number regime, where strong magnetic turbulence
+                        becomes highly non-linear.</li>
+                    </ul>
                 </div>
             </div>
 
+            <!-- Card 2: DSA validity / particle tracking -->
             <div class="project-card">
-                <img src="hillas.jpg" alt="Lensing research" class="project-img">
+                <!-- Replace placeholder with your DSA media when ready:
+                <img src="your-dsa-figure.gif" alt="..." class="project-img"> -->
+                <img src="random_gallery.png" alt="tracks gallery" class="project-img">
                 <div class="project-content">
-                    <span class="tag">Publication</span>
+                    <span class="tag tag-current">Particle Tracking & Test-Particle Simulations</span>
+                    <h3>Testing the Limits of Diffusive Shock Acceleration Theory</h3>
+                    <p>Analytical models of diffusive shock acceleration (DSA) make idealizing assumptions
+                    that break down in realistic environments. I use particle tracking in hybrid simulation
+                    outputs to directly test where these models succeed and where they fail, comparing
+                    numerical particle spectra to DSA predictions across a range of shock conditions.</p>
+                </div>
+            </div>
+
+            <!-- Card 3: Micro-instabilities -->
+            <div class="project-card">
+                <img src="brazil_full_US2000.png" alt="upstream brazil plot" class="project-img">
+                <div class="project-content">
+                    <span class="tag tag-current">Plasma Micro-Instabilities</span>
+                    <h3>Mirror & Firehose Instabilities and Jitter Radiation in SNRs</h3>
+                    <p>In high-&beta; plasmas, pressure anisotropy drives micro-instabilities &mdash; mirror
+                    and firehose modes &mdash; that generate small-scale magnetic fluctuations. I am
+                    investigating whether these instabilities can produce the jitter radiation observed
+                    in supernova remnants, and what they imply for electron heating and emission in
+                    these environments.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── Phenomenology ── -->
+        <h3 class="subsection-heading">Phenomenology</h3>
+        <div class="project-grid">
+
+            <!-- Card 4: Neutrino catalog -->
+            <div class="project-card">
+                <img src="spec_comps.png" alt="Hillas criterion plot" class="project-img">
+                <div class="project-content">
+                    <span class="tag tag-current">SNR Neutrinos</span>
                     <h3>A Catalog of Hadronic Supernova Remnants for Neutrino Followup</h3>
-                    <p>While neutrinos from individual Galactic SNRs are almost always too faint to be detected with current instruments, a stacked analysis may offer a possible route towards detection and would give us insight into the SNRs as hadronic accelerators.</p>
-                    <div class="links">
-                        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ae3f9f" target="_blank">Target Catalog of Hadronic SNRs (ApJ)</a>
-                    </div>
+                    <p>Neutrinos from individual Galactic SNRs are almost always too faint for current
+                        instruments, but a stacked analysis may offer a viable detection route. I constructed
+                        a catalog of SNRs with hadronic emission signatures, ranked by predicted neutrino flux,
+                        to serve as a target list for IceCube and future detectors</p>
+                    <ul class="project-list">
+                        <li>Catalog viewable here &mdash;
+                        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ae3f9f">ApJ</a></li>
+                    </ul>
                 </div>
             </div>
 
+            <!-- Card 5: BSM / dark matter -->
             <div class="project-card">
-                <div class="project-img" style="background:#2c3e50; color:white; display:flex; align-items:center; justify-content:center; text-align:center; padding:10px;">
-                    [Image/GIF of Photon Signature]
-                </div>
+                <!-- Replace placeholder with photon signature figure/GIF when ready:
+                     <img src="your-bsm-figure.gif" alt="..." class="project-img"> -->
+                <img src="MFP_mumu.png" alt="mean free path muons" class="project-img">
                 <div class="project-content">
-                    <span class="tag">BSM Physics</span>
-                    <h3>Dark Matter & BSM Projects</h3>
-                    <p>Investigating delayed and non-pointing photon signatures at the ATLAS detector to search for BSM physics.</p>
+                    <span class="tag tag-bsm">BSM Physics</span>
+                    <h3>Dark Matter & Beyond-Standard-Model Signatures</h3>
+                    <p>Searches for physics beyond the Standard Model using indirect and collider signatures.
+                    This includes work on the neutrino flux produced by decays of ultra-heavy dark matter,
+                    and an earlier search for delayed and non-pointing photon signatures at the ATLAS detector.</p>
                     <div class="links">
-                        <a href="https://iopscience.iop.org/article/10.1088/1475-7516/2025/07/067">Neutrino Signature from Ultra-Heavy Dark Matter Decays (JCAP)</a>
-                        <a href="CERN_final_presentation.pdf">ATLAS REU, 2020 </a>
+                        <a href="https://iopscience.iop.org/article/10.1088/1475-7516/2025/07/067">Ultra-Heavy DM Decays (JCAP)</a>
+                        <a href="CERN_final_presentation.pdf">ATLAS REU, 2020</a>
                     </div>
                 </div>
             </div>
@@ -194,10 +487,20 @@
         </div>
     </section>
 
-    <footer style="margin-top: 80px; font-size: 0.8rem; color: #888; text-align: center;">
-        &copy; 2026 Emily Simon — Built with GitHub Pages
+    <footer>
+        &copy; 2026 Emily Simon &mdash; Built with GitHub Pages
     </footer>
+
 </div>
 
+<script>
+function copyEmail() {
+    navigator.clipboard.writeText('ersimon@uchicago.edu').then(() => {
+        const status = document.getElementById('copy-status');
+        status.style.display = 'inline';
+        setTimeout(() => { status.style.display = 'none'; }, 2000);
+    });
+}
+</script>
 </body>
 </html>
