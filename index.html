@@ -213,11 +213,13 @@
         /* Image / GIF pane */
         .project-img {
             width: 240px;
-            min-height: 200px;
+            height: 200px;
             object-fit: cover;
             flex-shrink: 0;
             display: block;
         }
+
+        video.project-img { background: var(--primary); }
 
         /* Placeholder for cards without an image yet */
         .project-img-placeholder {
@@ -393,23 +395,24 @@
 
             <!-- Card 1: Shock acceleration & Emax -->
             <div class="project-card">
-                <img src="Bslice.png" alt="Magnetic field slice from hybrid simulation" class="project-img">
+                <video class="project-img project-media"
+                        poster="videos/Btot1000.png"
+                        muted loop playsinline preload="none"
+                        aria-label="Magnetic field slice from hybrid simulation">
+                    <source src="videos/demo_Btot_movie.mp4" type="video/mp4">
+                </video>
                 <div class="project-content">
-                    <span class="tag tag-current">Particle Acceleration</span>
-                    <h3>Maximum Energy Cosmic Rays at Supernova Remnant Shocks</h3>
-                    <p>I use hybrid kinetic simulations (dHybridR) to study how plasma instabilities at collisionless shocks
+                    <span class="tag tag-current">Maximum Energy Cosmic Rays at Supernova Remnant Shocks</span>
+                    <p>I use hybrid kinetic simulations to study how plasma instabilities at collisionless shocks
                     accelerate particles, with the goal of understanding whether SNRs can reach the "knee"
-                    of the cosmic ray energy spectrum. Active research threads include:</p>
+                    of the cosmic ray energy spectrum.</p>
                     <ul class="project-list">
-                        <li>Developed and validated a "faux-shock" boundary condition that substantially speeds
-                        up shock simulations &mdash;
-                        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ae2611">ApJ</a></li>
-                        <li>Studying particle acceleration driven by cosmic ray streaming instabilities;
-                        presented at ICRC 2024 &mdash;
-                        <a href="https://arxiv.org/abs/2402.01048">proceedings</a>,
-                        <span class="in-prep">manuscript in preparation</span></li>
-                        <li>Extending this to the high-Mach-number regime, where strong magnetic turbulence
-                        becomes highly non-linear.</li>
+                        <li>
+                        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ae2611">A “Faux-Shock” Method for Hybrid Simulations of Astrophysical Shocks</a></li>
+                        <li>
+                        <a href="https://arxiv.org/abs/2402.01048">Maximum Energy Achievable in Supernova Remnants: Self-Consistent Simulations</a>
+                        </li>
+                        <li>The high-Mach-number, strongly non-linear regime (in progress).</li>
                     </ul>
                 </div>
             </div>
@@ -418,14 +421,17 @@
             <div class="project-card">
                 <!-- Replace placeholder with your DSA media when ready:
                 <img src="your-dsa-figure.gif" alt="..." class="project-img"> -->
-                <img src="random_gallery.png" alt="tracks gallery" class="project-img">
+                <video class="project-img project-media"
+                        poster="videos/particle_trajectory.png"
+                        muted loop playsinline preload="none"
+                        aria-label="Magnetic field slice from hybrid simulation">
+                    <source src="videos/particle_trajectory.mp4" type="video/mp4">
+                </video>
                 <div class="project-content">
-                    <span class="tag tag-current">Particle Tracking & Test-Particle Simulations</span>
-                    <h3>Testing the Limits of Diffusive Shock Acceleration Theory</h3>
+                    <span class="tag tag-current">Testing the Limits of Diffusive Shock Acceleration Theory</span>
                     <p>Analytical models of diffusive shock acceleration (DSA) make idealizing assumptions
-                    that break down in realistic environments. I use particle tracking in hybrid simulation
-                    outputs to directly test where these models succeed and where they fail, comparing
-                    numerical particle spectra to DSA predictions across a range of shock conditions.</p>
+                    that break down in realistic environments. I use particle tracking and test particle simulations 
+                    to directly test where these models succeed and where they fail.</p>
                 </div>
             </div>
 
@@ -433,8 +439,7 @@
             <div class="project-card">
                 <img src="brazil_full_US2000.png" alt="upstream brazil plot" class="project-img">
                 <div class="project-content">
-                    <span class="tag tag-current">Plasma Micro-Instabilities</span>
-                    <h3>Mirror & Firehose Instabilities and Jitter Radiation in SNRs</h3>
+                    <span class="tag tag-current">Mirror & Firehose Instabilities</span>
                     <p>In high-&beta; plasmas, pressure anisotropy drives micro-instabilities &mdash; mirror
                     and firehose modes &mdash; that generate small-scale magnetic fluctuations. I am
                     investigating whether these instabilities can produce the jitter radiation observed
@@ -453,15 +458,14 @@
             <div class="project-card">
                 <img src="spec_comps.png" alt="Hillas criterion plot" class="project-img">
                 <div class="project-content">
-                    <span class="tag tag-current">SNR Neutrinos</span>
-                    <h3>A Catalog of Hadronic Supernova Remnants for Neutrino Followup</h3>
+                    <span class="tag tag-current">Neutrinos</span>
                     <p>Neutrinos from individual Galactic SNRs are almost always too faint for current
                         instruments, but a stacked analysis may offer a viable detection route. I constructed
                         a catalog of SNRs with hadronic emission signatures, ranked by predicted neutrino flux,
                         to serve as a target list for IceCube and future detectors</p>
                     <ul class="project-list">
-                        <li>Catalog viewable here &mdash;
-                        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ae3f9f">ApJ</a></li>
+                        <li>
+                        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ae3f9f">Detecting Neutrino Emission from Supernova Remnants: A Theoretically Motivated Target Catalog</a></li>
                     </ul>
                 </div>
             </div>
@@ -501,6 +505,10 @@ function copyEmail() {
         setTimeout(() => { status.style.display = 'none'; }, 2000);
     });
 }
+document.querySelectorAll('.project-media').forEach(v => {
+  v.addEventListener('mouseenter', () => v.play().catch(() => {}));
+  v.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
+});
 </script>
 </body>
 </html>
