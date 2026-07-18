@@ -505,10 +505,49 @@ function copyEmail() {
         setTimeout(() => { status.style.display = 'none'; }, 2000);
     });
 }
-document.querySelectorAll('.project-media').forEach(v => {
-  v.addEventListener('mouseenter', () => v.play().catch(() => {}));
-  v.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
-});
+(function () {
+  const videos = Array.from(document.querySelectorAll('.project-media'));
+  if (!videos.length) return;
+
+  // Users who've opted out of motion just see the static posters — no playback.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const play = v => { v.play().catch(() => {}); };   // swallow benign interrupt errors
+  const stop = v => { v.pause(); v.currentTime = 0; }; // reset so it shows frame 0 again
+
+  let current = null;
+
+  function updateActive() {
+    const mid = window.innerHeight / 2;
+    let best = null, bestDist = Infinity;
+
+    for (const v of videos) {
+      const r = v.getBoundingClientRect();
+      const onScreen = r.bottom > 0 && r.top < window.innerHeight;
+      if (!onScreen) continue;                 // ignore cards not visible at all
+      const dist = Math.abs((r.top + r.height / 2) - mid);
+      if (dist < bestDist) { bestDist = dist; best = v; }
+    }
+
+    if (best !== current) {                    // only act when the winner changes
+      if (current) stop(current);
+      if (best) play(best);
+      current = best;
+    }
+  }
+
+  // Throttle scroll/resize to one check per animation frame.
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { updateActive(); ticking = false; });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  updateActive();   // set the correct state on initial load
+})();
 </script>
 </body>
 </html>
